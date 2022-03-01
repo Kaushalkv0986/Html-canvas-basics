@@ -10,11 +10,11 @@ const mouse = {
 
 const maxRadius = 30;
 const colorArray = [
-  '#A67458', 
-  '#C4EEF2', 
-  '#7AB8BF', 
-  '#F24405', 
-  '#FA7F08', 
+  '#A67458',
+  '#C4EEF2',
+  '#7AB8BF',
+  '#F24405',
+  '#FA7F08',
   '#F2BFAC',
   '#D9564A',
   '#D9A443',
@@ -29,6 +29,20 @@ window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 })
+
+/* Generate circles on mouse click */
+
+// window.addEventListener('click', (e) =>{
+//   for (var i = 0; i< 50; i++){
+//     var radius = Math.random() * 5 + 1;
+//     var x = e.x + 70;
+//     var y = e.y - 70;
+
+//     dx = (Math.random() - 0.5);
+//     dy = (Math.random() - 0.5);
+//     circleArray.push(new createCircle(x, y, dx, dy, radius));
+//   }
+// })
 
 function createCircle(x, y, dx, dy, radius) {
   this.x = x;
@@ -51,6 +65,13 @@ function createCircle(x, y, dx, dy, radius) {
     );
     ctx.fillStyle = this.color;
     ctx.fill();
+
+    if (this.radius > 6){
+      ctx.font = (0.4 * this.radius) + "px Arial";
+      ctx.fillStyle = '#333';
+      ctx.textAlign = 'center';
+      ctx.fillText(this.color, this.x, this.y + 4);
+    }
   }; //draw end
 
   this.update = () => {
@@ -59,7 +80,7 @@ function createCircle(x, y, dx, dy, radius) {
       this.x + this.radius > canvas.width ||
       this.x - this.radius < 0
     ) {
-      this.dx -= this.dx;
+      this.dx = -this.dx;
     }
 
     /* Bounce back the circle if touching Y boundaries */
@@ -67,7 +88,7 @@ function createCircle(x, y, dx, dy, radius) {
       this.y + this.radius > canvas.height ||
       this.y - this.radius < 0
     ) {
-      this.dy -= this.dy;
+      this.dy = -this.dy;
     }
 
     this.x += this.dx;
