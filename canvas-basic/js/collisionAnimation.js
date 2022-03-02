@@ -124,8 +124,8 @@ function createCircle(x, y, radius, color) {
   this.fillColor = 'rgba(0,0,0,0)';
   this.mass = 1;
   this.velocity = {
-    x: Math.random(),
-    y: Math.random()
+    x: randomIntInRange(-1, 1),
+    y: randomIntInRange(-1, 1)
   };
   // this.color = colorArray[Math.floor(Math.random() * colorArray.length)];
 
@@ -201,8 +201,8 @@ function createCircle(x, y, radius, color) {
     ) {
       addEventListener('click', (e) => {
         this.velocity = {
-          x: 5,
-          y: 5
+          x: randomIntInRange(-5, 5),
+          y: randomIntInRange(-5, 5)
         }
       })
 
